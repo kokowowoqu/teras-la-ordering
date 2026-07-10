@@ -1,0 +1,363 @@
+Pendahuluan
+
+
+Ref
+BAB I
+PENDAHULUAN
+1.1 Latar Belakang
+Buku tamu undangan merupakan suatu properti yang wajib dimiliki dalam
+suatu acara terutama dalam acara pernikahan, seminar dan kegiatan lainnya. Buku
+tamu berfungsi sebagai dokumentasi atau pencatatan identitas tamu yang
+menghadiri acara tersebut. Buku tamu ini bisa digunakan untuk mencegah pihak
+diluar tamu undangan untuk masuk ke dalam acara tersebut. Dalam buku tamu
+biasanya terdapat informasi data dari tamu yang datang, seperti nama, alamat,
+nomor handphone dan data-data lainnya.
+Pada umumnya buku tamu diletakan di depan pintu masuk dan biasanya
+jumlahnya sedikit/terbatas. Untuk jumlah tamu undangan/peserta yang sedikit
+mungkin tidak terlalu berdampak namun bagi acara dengan jumlah peserta yang
+banyak dan datang secara bersamaan tentu akan menimbulkan antrian pada pintu
+masuk. Antrian ini tentu menyebabkan ketidaknyamanan baik bagi pemilik acara
+maupun bagi peserta dan tak jarang ketidaknyamanan ini membuat beberapa tamu
+undangan mengisi data secara tidak lengkap. Selain itu, buku tamu hanya
+mencatat informasi tamu sehingga bagi orang yang tidak dikenal bisa masuk
+hanya dengan melakukan pengisian identitas. Sehingga terjadi beberapa kasus,
+terdapat tamu yang tidak dikenal datang ke dalam acara tersebut. Bahkan
+berdasarkan pengalaman penulis, dalam suatu acara, terjadi kehilangan tas dan
+saat dicek cctv, pemilik acara atau keluarga pemilik acara tidak mengenal pelaku.
+2
+Situasi seperti ini membuat orang semakin berusaha mencari alat yang dapat
+mempermudah dalam pengisian buku tamu undangan dan mencari cara untuk
+meningkatkan keamanan agar tamu undangan yang masuk dalam acara tersebut
+sesuai dengan orang yang diundang oleh pemilik acara.
+Dengan melihat latar belakang ini, penulis mengambil judul “Rancang
+Bangun Sistem Manajemen Tamu Undangan Menggunakan QR Code
+Berbasis Web”. Cara kerja sistem ini ialah dengan penggunaan kode QR atau QR
+Code pada kertas undangan yang akan dibagikan kepada tamu undangan. Kode
+QR adalah suatu jenis kode matriks 2 dimensi yang dapat menyimpan data
+informasi sesuai keinginan si pembuat kode. Dalam kasus ini, QR Code berisi data
+dari tamu undangan yang sebelumnya telah dimasukan oleh si pemilik acara.
+Sehingga, pada saat si tamu undangan datang, mereka akan diwajibkan membawa
+undangan dari si pemilik acara, kemudian petugas akan melakukan scan QR Code
+dengan alat yang dikenal dengan QR Code Scanner. Lalu pada layar komputer
+akan ditampilkan data dari si pemilik undangan. Kemudian, di tempat
+pemeriksaan undangan tamu akan disediakan kamera web, sehingga sebelum
+memasuki ruang acara, tamu undangan akan diambil gambar / fotonya dan jika
+ada tamu undangan yang ingin memberikan ucapan dapat memberikannya pada
+saat pengambilan foto. Kemudian sistem secara otomatis akan melakukan update
+database dengan menambahkan foto dan ucapan dari tamu undangan tersebut.
+Setelah acara berakhir, pemilik acara dapat melihat informasi dari hasil undangan
+yang dia sebar yaitu yang hadir dan yang tidak hadir. QR Code ini juga akan
+3
+diberi batas waktu scan maksudnya hanya dapat dilakukan scan sekali dan jika
+lebih dari satu kali maka akan keluar alert.
+Sebelumnya, pernah dilakukan penelitian mengenai sistem manajemen
+tamu undangan dengan QR Code. Penelitian ini ada pada Proyek Tugas Akhir
+Fibbri Arif Nur Hendarto dengan judul Rancang Bangun Aplikasi Buku Tamu
+Menggunakan Metode Forward Error Correction dengan Kode Hamming untuk
+QR Code berbasis Smartphone pada tahun 2018. Keluaran dari aplikasi ini
+informasi data tamu berupa nama tamu, alamat, tanggal dan jam hadir. Ada juga
+penelitian Stepen Tanggoro dkk pada tahun 2018 yang berjudul Perancangan dan
+Realisasi Sistem Akses Pernikahan Dengan Menggunakan Kamera dan Barcode.
+Pada proyek skripsi penulis, keluaran dari sistem ini berupa informasi tertulis
+seperti nama, alamat, nomor handphone, ditambah dengan foto dan ucapan yang
+diambil langsung pada saat acara tersebut (bagi yang hadir) dan identitas diri
+ditambah informasi tidak hadir berupa kekosongan pada bagian tanggal (bagi
+undangan yang tidak hadir / tidak melakukan scan QR Code).
+Dengan dibuatnya rancangan sistem ini, penulis berharap pengembangan
+pengisian buku tamu undangan ini dapat mempermudah tamu undangan dan
+pemilik acara baik dalam segi penghematan waktu, peningkatan kenyamanan,
+penghematan penggunaan kertas dan peningkatan keamanan dalam suatu acara
+dengan mencegah pihak yang tidak dikenal masuk kedalam acara tersebut.
+4
+1.2 Rumusan Masalah
+Adapun rumusan masalah yang penulis ambil ialah bagaimana merancang
+suatu sistem manajamen tamu undangan yang awalnya penulisan secara manual
+pada buku tamu oleh peserta menjadi lebih praktis dan membuat sistem yang
+dapat meningkatkan keamanan acara dengan memberi akses masuk kepada tamu
+berupa undangan yang berisi QR Code berisi data tamu tersebut
+1.3 Batasan Masalah
+Untuk menghindari meluasnya masalah / pembahasan yang akan diteliti,
+maka penulis akan memberi batasan masalah yang akan dibahas, yaitu:
+1. Karena banyaknya acara yang ada disekitar masyarakat maka penulis
+mengambil contoh pada acara pernikahan
+2. Karena banyaknya ciri yang dapat menggambarkan identitas yang ada
+pada diri seseorang maka penulis membatasi informasi dalam QR Code
+hanya nama, alamat dan nomor handphone
+3. Sistem ini menggunakan bahasa pemograman PHP dan Javascript serta
+program Sublime Text dan XAMPP ditambah dengan database MySql
+4. Penulis menggunakan 2 komponen elektronik tambahan yaitu QR Code
+Scanner dan webcam
+5. Sistem ini merupakan sistem offline maka uji penelitian akan dilakukan
+pada laptop penulis
+6. Hasil akhir dari penelitian ini berupa identitas tamu beserta dengan foto
+dan ucapan.
+5
+1.4 Tujuan Penelitian
+Salah satu syarat untuk menyelesaikan pendidikan Strata 1 (S1) Program
+Studi Sistem Komputer Fakultas Sains & Teknologi Universitas Pembangunan
+Panca Budi
+1. Pembuatan sistem ini diharapkan untuk memperbaiki sistem lama
+(sistem yang masih banyak ditengah masyarakat) yang awalnya secara
+manual dalam pengisian buku tamu menjadi sistem yang lebih praktis,
+sehingga dapat menghemat waktu pengisian buku tamu dan memberi
+dampak ramah lingkungan dengan mencegah pemborosan kertas
+2. Pembuatan sistem ini juga bertujuan meningkatkan keamanan ketika
+masyarakat melakukan suatu acara dengan memberi hak akses
+undangan berisi identitas diri tamu pada kode QR dalam undangan
+mereka.
+1.5 Manfaat Penelitian
+1. Bagi pembaca, dengan adanya sistem ini diharapkan dapat memberi
+manfaat berupa masukan dan inovasi bagi yang ingin
+menyelenggarakan suatu acara. Penelitian ini diharapkan dapat
+memberikan ide untuk mempermudah pengisian buku tamu dalam acara
+yang diselenggarakan dan ide ini diharapkan dapat mengefisienkan
+waktu serta meningkatkan keamanan melalui bukti undangan yang
+dimiliki oleh peserta acara.
+6
+2. Bagi penulis, pembuatan sistem ini merupakan bentuk aplikasi dari
+pembelajaran yang selama ini didapatkan selama masa perkuliahan dan
+pengembangan dari penelitian yang sudah ada serta sebagai bentuk
+kontribusi penulis terhadap masyarakat sekitar dengan memberikan
+inovasi dalam pelaksaan suatu acara.
+1.6 Metodologi
+Adapun metodologi yang diambil penulis dalam pembuatan sistem
+rancang bangun ini adalah sebagai berikut:
+1. Pengumpulan data dengan cara melakukan studi kepustakaan dengan
+jalan mencari buku-buku atau informasi yang berhubungan dengan
+rancang bangun penelitian ini.
+2. Mengadakan konsultasi dan arahan dengan dosen pembimbing serta
+sumber-sumber lainnya yang dapat dijadikan acuan dan perbandingan
+dalam merancang skripsi ini.
+3. Mencari data-data yang diperlukan dalam pembuatan proyek ini dengan
+menggunakan fasilitas internet.
+4. Melakukan uji coba dan analisa terhadap sistem yang telah dibuat.
+
+, et al
+Invitation Guestbook Application By Applying Web-Based Qr Code
+Aplikasi Buku Tamu Undangan Dengan Menerapkan Qr Code Berbasis Web 70
+JIK, Vol 11, No 02,
+2022
+PENDAHULUAN
+Perkembangan teknologi informasi saat ini
+berjalan dengan sangat cepat dan banyak sekali
+keuntungan yang bisa didapatkan dari perkembangan
+teknologi informasi dan hampir seluruh aspek
+kehidupan telah menerapkan teknologi informasi.
+Salah satu bidang yang begitu signifikan dalam
+penerapan dan pemanfaatan teknologi informasi
+adalah bidang bisnis (Basry & Sari, 2018). Penerapan
+teknologi informasi dapat meningkatkan pelayanan
+terutama pada perusahaan yang bergerak dibidang jasa
+serta sangat membantu dalam pengolahan data yang
+ada untuk dijadikan sebuah informasi yang bermanfaat
+bagi pelanggan (Irawan et al., 2022). Untuk pengolahan
+data menjadi informasi salah satu contohnya adalah
+pengolahan data tamu undangan dimana dengan
+diolahnya data menggunakan komputer maka proses
+pengolahanya akan menjadi lebih cepat dan hasilnnya
+jauh lebih baik dari pada dikerjakan tanpa
+menggunakan komputer (Wahyuni et al., 2020).
+Buku tamu merupakan alat bantu untuk
+mengetahui seberapa banyak tamu yang datang ke
+suatu tempat acara, instansi atau perpustakaan .
+Pendataan buku tamu pada dasar hanya mendata
+pengunjung atau datang kesuatu tempat acara.
+Spesialis dari bentuk guestbook termasuk register
+hotel, dimana para tamu diminta untuk memberikan
+informasi kontak mereka. Kemudian ada beberapa
+defenisi yang harus di jelaskan pada latar belakang
+disini seperti : resepsionis, buku dan tamu (Sumbogo et
+al., 2019). Recepsionis adalah karyawan yang tugas
+utamanya menerima pengunjung atau tamu dan
+memberikan informasi yang tepat kepada tamu yang
+membutuhkan. Dapat dikatakan resepsionis adalah
+orang pertama yang akan ditemui oleh semua tamu
+sehingga kesan yang diperoleh tamu resepsionis
+amatlah penting (E. Kurniawan et al., 2020). Buku
+adalah kumpulan kertas berisi informasi, tercetak,
+disusun secara sistematis, dijilid serta bagian luarnya
+diberi pelindung terbuat dari kertas tebal, karton atau
+bahan lain (Pradnyana et al., 2021). Tamu adalah tamu
+organisasi, badan, lembaga, atau perusahaan, yaitu
+orang, baik sebagai pejabat utusan dari suatu lembaga
+maupun sebagai pribadi, yang berkunjung ke lembaga
+lain untuk kepentingan kedinasan maupun untuk
+kepentingan pribadi (Fauzan et al., 2021).
+Di era pandemi Covid-19 saat ini masyarakat
+yang akan melaksanakan acara dituntut untuk selalu
+menaati protokol kesehatan. Maka dari itu wedding
+organizer juga harus ikut mendukung dalam
+pelaksanaan acara dengan tetap menjaga protokol
+kesehatan. Salah satu layanan jasa wedding organizer
+adalah penerima tamu dan buku tamu. Donnys
+Pelaminan adalah sebuah usaha yang bergerak
+dibidang jasa wedding organizer dan wedding
+reception. Jasa-jasa yang disediakan antara lain jasa
+makeup, sewa baju pengantin, penyelanggaraan
+upacara daerah, penerima tamu dan buku tamu.
+Sebelum adanya covid-19 penerima tamu akan
+menerima tamu dan meminta tamu undangan untuk
+menulis nama pada buku tamu yang telah disediakan.
+Namun saat ini hal tersebut dinilai melanggar protokol
+kesehatan dikarenakan jarak yang terlalu dekat antara
+penerima tamu dan tamu undangan serta
+penggunakan alat tulis yang selalu berpindah tangan.
+Kemudian pada buku tamu ini biasanya pihak wedding
+reception kesulitan melihat berapa tamu undangan
+yang menghadiri pernikahan dan siapa saja tamu yang
+tidak menghadirinya. Masalah tersebut seharusnya
+bisa diselesaikan dengan pemanfaatan suatu sistem
+informasi. Dimana, nantinya sistem ini akan membantu
+pihak wedding reception dalam melayani tamu
+undangan dan pengolahan data tamu serta juga
+memudahkan para tamu undangan supaya tidak
+menulis secara manual dan dapat menjaga jarak.
+Berdasarkan permasalahan yang ada dan
+banyak terjadi pada perusahaan wedding organis
+terutama permasalahan buku tamu, maka dibutuhkan
+suatu aplikasi buku tamu dengan menerapkan QR
+Code. QR code merupakan singkatan dari Quick
+Respone Code. Penggunaan barcode dua dimensi
+sudah sangat luas, namun umumnya di pakai untuk
+mengkodekan alamat website, nomor kontak, alamat
+email, nomor telepon atau sekedar teks biasa. Alat
+yang digunakan untuk membaca QR Code disebut QR
+Code Scanner yang tersedia dalam bentuk aplikasi di
+smartphone seperti Android atau iPhone (Aini et al.,
+2017). Tujuan utama QR Code saat ini digunakan untuk
+memudahkan pengguna Smartphone mengakses
+informasi dengan dua langkah mudah, 1. scanning QR
+Code, 2 lakukan absensi kehadiran. Untuk QR Code
+sendiri sangat cocok untuk proses absensi tamu
+undangan. Aplikasi ini nantinya akan berbasis web.
+Menurut Mara Destiningrum Yang dimaksud dengan
+website adalah sebuah software yang berfungsi untuk
+menampilkan dokumen - dokumen pada suatu website
+Yulisman, et al
+Invitation Guestbook Application By Applying Web-Based Qr Code
+Aplikasi Buku Tamu Undangan Dengan Menerapkan Qr Code Berbasis Web 71
+JIK, Vol 11, No 02,
+2022
+yang membuat pengguna dapat mengakses internet
+melalui software yang terkoneksi dengan internet.
+sehingga bisa diakses dari smartphone tamu undangan
+untuk melakukan scan QR Code (Evasari et al., 2019).
+Bahasa pemrograman yang peneliti gunakan adalah
+PHP native. PHP digunakan sebagai bahasa script
+server-side dalam pengembangan web yang disisipkan
+pada dokumen HTML penggunaan php memungkinkan
+web dapat dibuat dinamis hingga maintenance situs
+web tersebut menjadi lebih mudah dan efisien php
+merupakan software open source yang disebarkan dan
+dilisensikan secara gratis serta dapat di downlod secara
+bebas dari situs resminya. Sedangkan cara
+penggunaanya sebenarnya sangat mudah, karena
+proses pembuatanya yang tidak lama, maka seluruh
+informasi pun bisa terekam semua. Setiap
+penggunaanya bisa terhubung secara langsung ke
+konten digital dari website (Zulkifli et al., 2018).
+Sistem informasi yang saat ini banyak di
+kembangkan salah satunya adalah website. Dimana
+website ini dapat menjadi media bagi para penerima
+tamu untuk mencatat tamu yang hadir hanya dengan
+memberikan QR Code pada tamu undangan untuk
+dipindai menggunakan smartphone masing-masing
+tamu. Sehingga dapat tetap menjaga jarak dan tidak
+memerlukan alat tulis. Hal ini dinilai sangat baik dalam
+mendukung pelaksanaan pernikahan dengan tetap
+menaati protokol kesehatan dari pemerintah.
+Beberapa penelitian lainnya menjadi acuan
+peneliti dalam membangun aplikasi buku tamu
+undangan ini, diantaranya mendapatkan hasil Sistem
+Informasi Buku Tamu (SI-KUTA) pada Dinas Pemuda,
+Olahraga dan Pariwisata Kota Balikpapan
+menggunakan metode Personal Extreme Programming
+(PXP) dapat dengan mudah merekap, menghitung dan
+menyimpan data-data pengunjung dan sistem juga
+dapat menjadi upaya dalam mengurangi penggunaan
+kertas atau paperless (Fikri & Arthawan, 2020).
+Penelitian berikutnya menjadi dasar peneliti adalah
+Sistem Informasi Pengisian Buku Tamu Di Perpustakaan
+Universitas IBBI Berbasis Web yang mana sistem ini
+memudahkan mahasiswa dalam melakukan pengisian
+buku tamu untuk masuk ke perpustakaan dan untuk
+laporan buku tamu sistem sudah menyediakan cetak
+laporan dan bisa di export ke file Excel (Yuliana, 2021).
+Penelitian lainnya mengahasilkan sebuah aplikasi buku
+tamu elektronik yang menggunakan teknologi barcode
+untuk perpustakaan STIKOM DB Jambi yang
+mempermudah dan mempercepat proses perekaman
+kehadiran pengunjung di perpustakaan serta dilengkapi
+dengan informasi statistik kehadiran pengunjung,
+usulan pengadaan bahan bacaan serta kualitas layanan
+dan prasarana melalui kritik dan saran yang
+disampaikan pengunjung (Mulyadi, 2019)
+
+Direktorat Departemen Agama bertanggung jawab atas sebagian tugas
+Departemen Agama Republik Indonesia baik di kabupaten maupun kota di wilayah
+Muslim, dan berbeda dalam pencatatannya. Kesejahteraan sosial, dukungan
+kependudukan dan keluarga sesuai dengan pedoman yang ditetapkan oleh Dirjen
+Umat Islam berdasarkan peraturan perundang-undangan yang berlaku.
+Menikah adalah salah satu momen terpenting dalam hidup seseorang.
+Manusia mengalami perubahan derajat kehidupan pribadi sepanjang hidupnya yang
+dikenal dengan siklus hidup, yaitu masa kanak-kanak, remaja, pernikahan, usia tua,
+dan kematian. Ikatan perkawinan merupakan sesuatu yang dianggap sakral, sehingga
+perkawinan terkadang dipahami sebagai modus cinta yaitu penguatan hubungan
+antara dua insan baik secara agama maupun secara hukum. Pernikahan tidak hanya
+menyatukan dua individu, tetapi juga dua keluarga, sehingga menghadiri pernikahan
+secara langsung dianggap sebagai ungkapan rasa syukur, kebahagiaan, dan
+kebanggaan.
+Dengan melihat perkembangan kemajuan teknologi saat ini, tentu begitu
+banyak jalan keluar untuk menyelesaikan masalah tersebut, oleh sebab itu
+dirancanglah suatu Aplikasi Web Digital Wedding Service yang dapat membuat
+proses pembuatan layanan web sehingga tamu yang ingin ikut acara pernikahan
+dapat mengikuti acara secara langsung lewat website tanpa perlu datang ke lokasi
+dengan fitur yang mendukung serta terkomputerisasi dengan baik.
+Ilmu pengetahuan dan teknologi kini telah menjadi motor penggerak dan
+pemicu pertumbuhan di bidang-bidang pembangunan seperti pendidikan dan dunia
+usaha. Salah satu tanda perkembangan adalah penggunaan komputer di bidang
+pembangunan ini.
+2
+Era globalisasi ini, komputer digunakan secara optimal hampir pada semua
+bidang. Kompetensi adalah alat untuk meningkatkan efisiensi bisnis dan alat untuk
+menghitung metrik yang berulang, tepat waktu, dan akurat agar menghasilkan
+laporan yang diperlukan untuk mendukung operasi. Semua ini dapat dilakukan
+dengan komputer, sehubungan dengan situasi di atas, penulis ingin menyusun
+laporan akhir dari proyek yang berjudul “Aplikasi Web Digital Wedding Service”.
+1.2. Rumusan Masalah
+Berdasarkan uraian yang telah penulis kemukakan diatas, maka
+permasalahan yang dihadapi oleh Aplikasi Web Digital Wedding Service
+adalah sebagai berikut:
+1. Bagaimana merancang sistem digital aplikasi layanan acara pernikahan
+secara online sehingga tamu yang berhalangan hadir dapat mengikuti dan
+menyumbang kepada kedua calon mempelai?
+2. Bagaimana membuat dan menyajikan informasi pelanan acara pernikahan
+secara digital menggunakan pemrograman PHP dan mySQL?
+1.3. Batasan Masalah
+Dalam hal ini, agar menghindari terjadinya defleksi pada penulisan
+Tugas Akhir ini, penulis membatasi perkara yg dibahas. Adapun batasan
+perkara yang dibahas antara lain:
+1. Perancangan sistem hanya fokus pada Pembuatan Aplikasi Web Digital
+Wedding Service yang Sebelumnya Tamu datang menghadiri acara
+pernikahan secara langsung ke lokasi pernikahan.
+2. Pengembangan sistem informasi penyimpanan perkara digital diprogram
+menggunakan bahasa pemrograman PHP dan Database MySQL.
+3
+1.4 Tujuan Penelitian
+Adapun tujuan dari penelitian ini adalah sebagai berikut :
+1. Merancang sistem digital untuk setiap daerah yang ingin bertamu ke
+pernikahan tanpa harus datang ke lokasinya langsung.
+2. Membuat dan menyajikan informasi pelayanan acara pernikahaan secara
+digital menggunakan pemrograman PHP dan mySQL.
+1.5 Manfaat Penelitian
+Adapun manfaat yang didapat dari penyusunan penelitian ini adalah sebagai
+berikut :
+1. Dengan hasil rancangan sistem Digital Pelayanan acara pernikahan berbasis
+web dapat memudahkan pihak tamu dalam menghadiri acara tanpa harus
+datang ke acara jika dari pihak tamu berada di lokasi yang jauh dari tempat
+acara atau dalam keadaan yang membuat tamu tersebut tidak dapat hadir dan
+dalam kondisi pandemi saat ini tentunya tamu tetap dalam protokol
+kesehatan.
+2. Dengan menyajikan sistem Digital Pelayanan acara pernikahan berbasis web
+memudahkan tamu dalam menghadiri acara dari berbagai daerah selama
+terdapat koneksi internet.

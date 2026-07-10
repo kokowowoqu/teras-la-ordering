@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>TERAS LA - Sistem Pemesanan</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<div class="app" id="app">
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="top-row">
+      <div class="brand">TERAS LA <span>·</span></div>
+      <span class="badge-table" id="headerTable">Meja 13</span>
+      <button class="btn-tenant-toggle" id="btnToggleTenant">🏢 Tenant</button>
+    </div>
+    <div class="sub-row">
+      <span class="step-label" id="headerStep">Selamat Datang</span>
+      <span class="step-indicator" id="headerIndicator">1/7</span>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLL -->
+  <div class="main-scroll" id="mainScroll">
+    <!-- LOGIN -->
+    <div class="screen active" id="screenLogin">
+      <div class="login-card">
+        <div class="welcome">Selamat Datang</div>
+        <div class="welcome-sub">Silakan lengkapi data diri Anda untuk memulai pesanan.</div>
+        <div class="table-display">
+          <span class="label">📍 Lokasi Anda</span>
+          <span class="number" id="loginTableNumber">Meja 13</span>
+        </div>
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" id="inputName" placeholder="Masukkan nama Anda" />
+        </div>
+        <div class="form-group">
+          <label>Nomor Telepon</label>
+          <input type="tel" id="inputPhone" placeholder="Masukkan nomor telepon" />
+        </div>
+        <button class="btn btn-primary mt-8" id="btnStartOrder">Mulai Pesan</button>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <div class="screen" id="screenMenu">
+      <div class="menu-header">
+        <h2>All Menu</h2>
+        <div class="cart-badge" id="cartBadge">🛒 <span id="cartCount">0</span></div>
+      </div>
+      <div class="category-tabs" id="categoryTabs">
+        <button class="tab active" data-cat="all">Semua</button>
+        <button class="tab" data-cat="main">Main Course</button>
+        <button class="tab" data-cat="beverage">Beverage</button>
+        <button class="tab" data-cat="drink">Drink</button>
+      </div>
+      <div class="menu-items" id="menuItems"></div>
+      <div class="order-float" id="orderFloat" style="display:none;">
+        <div class="left">
+          <div class="label">Pesanan</div>
+          <div class="total" id="floatTotal">Rp 0</div>
+          <div class="count" id="floatCount">0 item</div>
+        </div>
+        <button class="view-btn" id="viewOrderBtn">Lihat Pesanan</button>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="screen" id="screenSummary">
+      <button class="back-btn" id="backToMenuBtn">← Kembali ke Menu</button>
+      <div id="summaryItemsList"></div>
+      <hr class="divider" />
+      <div class="summary-total-line"><span class="label">Subtotal</span><span id="summarySubtotal">Rp 0</span></div>
+      <div class="summary-total-line"><span class="label">Tax (11%)</span><span id="summaryTax">Rp 0</span></div>
+      <div class="summary-total-line"><span class="label">Service (5%)</span><span id="summaryService">Rp 0</span></div>
+      <div class="summary-total-line total"><span class="label">Total</span><span id="summaryTotal">Rp 0</span></div>
+      <div style="margin-top:8px;">
+        <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:6px;">Metode Pembayaran</div>
+        <div class="payment-method-display">
+          <span class="icon">📱</span>
+          <div><div class="label">QRIS</div><div class="sub">Standar Pembayaran Nasional</div></div>
+          <span style="margin-left:auto;color:var(--primary);font-weight:700;">✓</span>
+        </div>
+      </div>
+      <div style="background:var(--bg-warm);border-radius:var(--radius-sm);padding:14px 16px;margin:4px 0 8px;">
+        <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;">
+          <span>Total Pembayaran</span>
+          <span id="summaryGrandTotal">Rp 0</span>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnPayNow">Bayar Sekarang</button>
+    </div>
+
+    <!-- QRIS -->
+    <div class="screen" id="screenQris">
+      <button class="back-btn" id="backToSummaryBtn">← Kembali</button>
+      <div class="qris-display">
+        <div class="qris-label">QRIS — Standar Pembayaran Nasional</div>
+        <div class="qris-amount" id="qrisAmount">Rp 0</div>
+        <div id="qrcode" class="hidden"></div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;" id="qrInstruction">Pilih bank/dompet digital di bawah</div>
+      </div>
+      <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-top:4px;">Pilih Bank / Dompet Digital</div>
+      <div class="bank-grid" id="bankGrid">
+        <div class="bank-item" data-bank="bca"><span class="bank-icon">🏦</span><span class="bank-name">BCA</span></div>
+        <div class="bank-item" data-bank="mandiri"><span class="bank-icon">🏦</span><span class="bank-name">Mandiri</span></div>
+        <div class="bank-item" data-bank="bni"><span class="bank-icon">🏦</span><span class="bank-name">BNI</span></div>
+        <div class="bank-item" data-bank="bri"><span class="bank-icon">🏦</span><span class="bank-name">BRI</span></div>
+        <div class="bank-item" data-bank="gopay"><span class="bank-icon">🟢</span><span class="bank-name">GoPay</span></div>
+        <div class="bank-item" data-bank="ovo"><span class="bank-icon">🟣</span><span class="bank-name">OVO</span></div>
+        <div class="bank-item" data-bank="dana"><span class="bank-icon">🔵</span><span class="bank-name">DANA</span></div>
+        <div class="bank-item" data-bank="linkaja"><span class="bank-icon">🔴</span><span class="bank-name">LinkAja</span></div>
+        <div class="bank-item" data-bank="shopeepay"><span class="bank-icon">🟠</span><span class="bank-name">ShopeePay</span></div>
+      </div>
+      <div class="auto-payment-note">Setelah memilih, QR Code akan muncul dan pembayaran otomatis</div>
+    </div>
+
+    <!-- PROCESSING -->
+    <div class="screen" id="screenProcessing">
+      <div class="text-center" style="padding:12px 0;">
+        <div class="spinner"></div>
+        <h3 style="font-weight:700;color:var(--text-dark);margin-top:2px;">Memproses Pembayaran</h3>
+        <p class="text-muted" style="margin-top:2px;">Mohon tunggu sebentar...</p>
+        <div style="max-width:200px;margin:12px auto 0;">
+          <div id="processingBar" style="width:0%;height:6px;background:var(--primary);border-radius:4px;transition:width 0.3s;"></div>
+        </div>
+        <p class="text-muted" id="processingText" style="font-size:13px;margin-top:6px;">Verifikasi pembayaran</p>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="screen" id="screenSuccess">
+      <div class="text-center" style="padding:4px 0;">
+        <div class="success-icon">✅</div>
+        <h2 style="font-weight:800;color:var(--text-dark);">Pembayaran Berhasil!</h2>
+        <p class="text-muted">Terima kasih, pesanan Anda sedang dipersiapkan.</p>
+      </div>
+      <div class="status-card">
+        <div class="row"><span class="label">Order ID</span><span class="value" id="successOrderId">#215</span></div>
+        <div class="row"><span class="label">Meja</span><span class="value" id="successTable">Meja 13</span></div>
+        <div class="row"><span class="label">Total</span><span class="value" id="successTotal">Rp 0</span></div>
+      </div>
+      <div id="strukContainer" style="margin:4px 0;"></div>
+      <div class="btn-group" style="flex-wrap:wrap;">
+        <button class="btn btn-secondary" id="btnDownloadStruk" style="flex:1;min-width:140px;">⬇️ Download Struk</button>
+        <button class="btn btn-secondary" id="btnCopyDetail" style="flex:1;min-width:140px;">📋 Salin Detail</button>
+        <button class="btn btn-success" id="btnSendWhatsApp" style="flex:1;min-width:140px;">💬 Kirim WhatsApp</button>
+      </div>
+      <button class="btn btn-primary" id="btnViewStatus">Lihat Status Pesanan</button>
+    </div>
+
+    <!-- STATUS -->
+    <div class="screen" id="screenStatus">
+      <button class="back-btn" id="backFromStatusBtn">← Kembali ke Menu</button>
+      <div class="status-card">
+        <div class="row"><span class="label">Order ID</span><span class="value" id="statusOrderId">#215</span></div>
+        <div class="row"><span class="label">Meja</span><span class="value" id="statusTable">Meja 13</span></div>
+      </div>
+      <div class="status-steps" id="statusSteps">
+        <div class="step" data-step="0"><span class="dot"></span><span class="label">Diterima</span></div>
+        <div class="step" data-step="1"><span class="dot"></span><span class="label">Dimasak</span></div>
+        <div class="step" data-step="2"><span class="dot"></span><span class="label">Siap Saji</span></div>
+        <div class="step" data-step="3"><span class="dot"></span><span class="label">Selesai</span></div>
+      </div>
+      <div class="status-notification" id="statusNotification">
+        <div class="message" id="statusMessage">Pesanan diterima oleh dapur</div>
+        <div class="time" id="statusTime"></div>
+      </div>
+      <div class="status-history" id="statusHistory">
+        <div class="history-title">📋 Riwayat Pesanan</div>
+        <div id="statusHistoryList"></div>
+      </div>
+      <button class="btn btn-success" id="btnCompleteOrder" style="display:none;">Pesanan Selesai</button>
+    </div>
+
+    <!-- COMPLETED -->
+    <div class="screen" id="screenCompleted">
+      <div class="text-center" style="padding:4px 0 6px;">
+        <div style="font-size:64px;">🎉</div>
+        <h2 style="font-weight:800;color:var(--text-dark);">Pesanan Selesai!</h2>
+        <p class="text-muted">Bagaimana pengalaman makan Anda?</p>
+      </div>
+      <div class="feedback-stars" id="feedbackStars">
+        <span data-star="1">☆</span><span data-star="2">☆</span><span data-star="3">☆</span><span data-star="4">☆</span><span data-star="5">☆</span>
+      </div>
+      <div class="text-center" style="font-size:13px;color:var(--text-muted);font-weight:500;" id="feedbackLabel">Klik bintang untuk memberi rating</div>
+      <textarea class="feedback-textarea" id="feedbackText" placeholder="Tulis feedback Anda... (opsional)"></textarea>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="btnSubmitFeedback">Kirim Feedback</button>
+        <button class="btn btn-secondary" id="btnOrderAgain">Pesan Lagi</button>
+      </div>
+    </div>
+
+    <!-- TENANT -->
+    <div class="screen" id="screenTenant">
+      <div class="tenant-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h2 style="font-size:20px;font-weight:800;color:var(--text-dark);">📋 Daftar Pesanan</h2>
+        <button class="btn btn-secondary btn-sm" id="btnRefreshTenant">🔄 Refresh</button>
+      </div>
+      <div id="tenantOrderList"></div>
+      <div class="text-muted text-center" style="padding:20px 0;" id="tenantEmpty">Belum ada pesanan masuk</div>
+    </div>
+  </div>
+
+  <!-- MODAL ADD ITEM -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal-sheet">
+      <div class="handle"></div>
+      <h3 id="modalItemName">Nasi Goreng</h3>
+      <div class="modal-sub" id="modalItemPrice">Harga: <span class="price-display" id="modalPriceDisplay">Rp 15.000</span></div>
+      <div id="modalSpiceGroup" style="display:block;">
+        <label>Tingkat Pedas</label>
+        <div class="spice-group" id="spiceGroup">
+          <button class="spice-btn" data-spice="0">0</button>
+          <button class="spice-btn active" data-spice="1">1</button>
+          <button class="spice-btn" data-spice="2">2</button>
+          <button class="spice-btn" data-spice="3">3</button>
+          <button class="spice-btn" data-spice="4">4</button>
+          <button class="spice-btn" data-spice="5">5</button>
+        </div>
+      </div>
+      <div id="modalDrinkOptions" style="display:none;">
+        <label>Level Manis</label>
+        <div class="option-group" id="sweetGroup">
+          <button class="opt-btn active" data-opt="normal">Normal</button>
+          <button class="opt-btn" data-opt="kurang">Kurang Manis</button>
+          <button class="opt-btn" data-opt="tanpa">Tanpa Gula</button>
+        </div>
+        <label>Suhu</label>
+        <div class="option-group" id="tempGroup">
+          <button class="opt-btn active" data-opt="panas">Panas</button>
+          <button class="opt-btn" data-opt="dingin">Dingin</button>
+        </div>
+      </div>
+      <label>Catatan untuk Restoran</label>
+      <textarea id="modalNotes" placeholder="Contoh: Jangan pakai daun bawang..."></textarea>
+      <label>Jumlah</label>
+      <div class="qty-control">
+        <button id="qtyMinus">−</button>
+        <span class="qty-num" id="qtyNumber">1</span>
+        <button id="qtyPlus">+</button>
+      </div>
+      <button class="btn btn-primary" id="btnAddToOrder">Tambah ke Pesanan</button>
+      <button class="btn btn-secondary mt-8" id="btnCloseModal">Batal</button>
+    </div>
+  </div>
+</div>
+
+<!-- Socket.IO client -->
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<!-- Main JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
